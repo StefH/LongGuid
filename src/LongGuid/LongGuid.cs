@@ -43,6 +43,11 @@ namespace System.LongGuid
         [PublicAPI]
         public LongGuid(Guid guid1, Guid guid2, Guid guid3, Guid guid4)
         {
+            Check.NotEmpty(guid1, nameof(guid1));
+            Check.NotEmpty(guid2, nameof(guid2));
+            Check.NotEmpty(guid2, nameof(guid3));
+            Check.NotEmpty(guid3, nameof(guid4));
+
             _guid1 = guid1;
             _guid2 = guid2;
             _guid3 = guid3;
@@ -63,6 +68,22 @@ namespace System.LongGuid
             _guid2 = new Guid(byteArray.Skip(16).Take(16).ToArray());
             _guid3 = new Guid(byteArray.Skip(32).Take(16).ToArray());
             _guid4 = new Guid(byteArray.Skip(48).Take(16).ToArray());
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LongGuid"/> struct.
+        /// </summary>
+        /// <param name="input">The <see cref="LongGuid"/> string to convert.</param>
+        [PublicAPI]
+        public LongGuid(string input)
+        {
+            Check.NotNullOrEmpty(input, nameof(input));
+            Check.Condition(input, IsValidLength, nameof(input));
+
+            _guid1 = Guid.Parse(input.Substring(0, 36));
+            _guid2 = Guid.Parse(input.Substring(36 + 1, 36));
+            _guid3 = Guid.Parse(input.Substring(72 + 2, 36));
+            _guid4 = Guid.Parse(input.Substring(108 + 3, 36));
         }
 
         /// <summary>
@@ -89,7 +110,7 @@ namespace System.LongGuid
         /// <summary>
         /// Converts the string representation of a GUID to the equivalent <see cref="LongGuid"/> structure.
         /// </summary>
-        /// <param name="input">The LongGuid string to convert.</param>
+        /// <param name="input">The <see cref="LongGuid"/> string to convert.</param>
         /// <returns>A structure that contains the value that was parsed.</returns>
         [PublicAPI]
         public static LongGuid Parse(string input)
@@ -115,7 +136,7 @@ namespace System.LongGuid
         public static bool TryParse(string input, out LongGuid result)
         {
             result = Empty;
-            if (input == null || !IsValidLength(input))
+            if (string.IsNullOrEmpty(input) || !IsValidLength(input))
             {
                 return false;
             }
@@ -124,7 +145,8 @@ namespace System.LongGuid
                 Guid.TryParse(input.Substring(0, 36), out Guid guid1) &
                 Guid.TryParse(input.Substring(36 + 1, 36), out Guid guid2) &
                 Guid.TryParse(input.Substring(72 + 2, 36), out Guid guid3) &
-                Guid.TryParse(input.Substring(108 + 3, 36), out Guid guid4)))
+                Guid.TryParse(input.Substring(108 + 3, 36), out Guid guid4))
+            )
             {
                 return false;
             }

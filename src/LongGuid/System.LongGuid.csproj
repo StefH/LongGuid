@@ -5,10 +5,10 @@
     <AssemblyTitle>System.LongGuid</AssemblyTitle>
     <Version>1.0.0.0</Version>
     <Authors>Stef Heyenrath</Authors>
-    <TargetFrameworks>netstandard1.0</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard1.0</TargetFrameworks>
     <AssemblyName>System.LongGuid</AssemblyName>
     <PackageId>System.LongGuid</PackageId>
-    <PackageTags>guid;512;identifier</PackageTags>
+    <PackageTags>guid;512;identifier;longguid</PackageTags>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageReleaseNotes>Initial version</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/StefH/LongGuid</PackageProjectUrl>

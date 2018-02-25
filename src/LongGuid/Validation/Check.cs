@@ -9,12 +9,11 @@ using JetBrains.Annotations;
 // Copied from https://github.com/aspnet/EntityFramework/blob/dev/src/Shared/Check.cs
 namespace System.LongGuid.Validation
 {
-    // [ExcludeFromCodeCoverage]
     [DebuggerStepThrough]
     internal static class Check
     {
         [ContractAnnotation("value:null => halt")]
-        public static T Condition<T>([NoEnumeration] T value, [NotNull] Predicate<T> condition, [InvokerParameterName] [NotNull] string parameterName)
+        internal static T Condition<T>([NoEnumeration] T value, [NotNull] Predicate<T> condition, [InvokerParameterName] [NotNull] string parameterName)
         {
             NotNull(condition, nameof(condition));
             NotNull(value, nameof(value));
@@ -30,7 +29,7 @@ namespace System.LongGuid.Validation
         }
 
         [ContractAnnotation("value:null => halt")]
-        public static T NotNull<T>([NoEnumeration] T value, [InvokerParameterName] [NotNull] string parameterName)
+        internal static T NotNull<T>([NoEnumeration] T value, [InvokerParameterName] [NotNull] string parameterName)
         {
             if (ReferenceEquals(value, null))
             {
@@ -43,7 +42,7 @@ namespace System.LongGuid.Validation
         }
 
         [ContractAnnotation("value:null => halt")]
-        public static T NotNull<T>([NoEnumeration] T value, [InvokerParameterName] [NotNull] string parameterName, [NotNull] string propertyName)
+        internal static T NotNull<T>([NoEnumeration] T value, [InvokerParameterName] [NotNull] string parameterName, [NotNull] string propertyName)
         {
             if (ReferenceEquals(value, null))
             {
@@ -57,23 +56,7 @@ namespace System.LongGuid.Validation
         }
 
         [ContractAnnotation("value:null => halt")]
-        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T> value, [InvokerParameterName] [NotNull] string parameterName)
-        {
-            NotNull(value, parameterName);
-
-            var notNullOrEmpty = value as T[] ?? value.ToArray();
-            if (!notNullOrEmpty.Any())
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(CoreStrings.CollectionArgumentIsEmpty(parameterName));
-            }
-
-            return notNullOrEmpty;
-        }
-
-        [ContractAnnotation("value:null => halt")]
-        public static string NotNullOrEmpty(string value, [InvokerParameterName] [NotNull] string parameterName)
+        internal static string NotNullOrEmpty(string value, [InvokerParameterName] [NotNull] string parameterName)
         {
             Exception e = null;
             if (ReferenceEquals(value, null))
@@ -96,7 +79,7 @@ namespace System.LongGuid.Validation
         }
 
         [ContractAnnotation("value:null => halt")]
-        public static Guid NotEmpty(Guid value, [InvokerParameterName] [NotNull] string parameterName)
+        internal static Guid NotEmpty(Guid value, [InvokerParameterName] [NotNull] string parameterName)
         {
             if (value == Guid.Empty)
             {
@@ -106,7 +89,7 @@ namespace System.LongGuid.Validation
             return value;
         }
 
-        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [InvokerParameterName] [NotNull] string parameterName)
+        internal static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [InvokerParameterName] [NotNull] string parameterName)
         {
             NotNull(value, parameterName);
 

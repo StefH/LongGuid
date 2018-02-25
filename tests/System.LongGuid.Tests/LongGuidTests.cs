@@ -50,6 +50,19 @@ namespace System.LongGuid.Tests
         }
 
         [Fact]
+        public void LongGuid_Constructor_String()
+        {
+            // Assign
+            var longGuid = new LongGuid("10000000-0000-0000-0000-000000000001-20000000-0000-0000-0000-000000000002-30000000-0000-0000-0000-000000000003-40000000-0000-0000-0000-000000000004");
+
+            // Act
+            string result = longGuid.ToString();
+
+            // Assert
+            Check.That(result).Equals("10000000-0000-0000-0000-000000000001-20000000-0000-0000-0000-000000000002-30000000-0000-0000-0000-000000000003-40000000-0000-0000-0000-000000000004");
+        }
+
+        [Fact]
         public void LongGuid_ToByteArray()
         {
             // Assign
@@ -62,14 +75,15 @@ namespace System.LongGuid.Tests
             // Act
             byte[] result = longGuid.ToByteArray();
 
-            var longGuid2 = new LongGuid(result);
-
             // Assert
+            Check.That(result).HasSize(64);
+
+            var longGuid2 = new LongGuid(result);
             Check.That(longGuid).Equals(longGuid2);
         }
 
         [Fact]
-        public void LongGuid_Parse()
+        public void LongGuid_Parse_String()
         {
             // Assign
             var guid1 = Guid.Parse("10000000-0000-0000-0000-000000000001");
