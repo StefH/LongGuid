@@ -2,7 +2,7 @@
 A LongGuid solution with 512 bits per identifier as opposed to the default 128 bits.
 
 ## NuGet
-[![NuGet Badge](https://buildstats.info/nuget/System.LongGuid)](https://www.nuget.org/packages/System.LongGuid)
+[![NuGet Badge](https://buildstats.info/nuget/LongGuid)](https://www.nuget.org/packages/LongGuid)
 
 ## Code Example
 

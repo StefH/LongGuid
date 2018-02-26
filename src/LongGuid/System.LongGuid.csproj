@@ -2,17 +2,18 @@
 
   <PropertyGroup>
     <Description>A LongGuid solution with 512 bits per identifier as opposed to the default 128 bits.</Description>
+    <Title>System.LongGuid</Title>
     <AssemblyTitle>System.LongGuid</AssemblyTitle>
     <Version>1.0.0.0</Version>
     <Authors>Stef Heyenrath</Authors>
     <TargetFrameworks>net40;netstandard1.0</TargetFrameworks>
     <AssemblyName>System.LongGuid</AssemblyName>
-    <PackageId>System.LongGuid</PackageId>
+    <PackageId>LongGuid</PackageId>
     <PackageTags>guid;512;identifier;longguid</PackageTags>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageReleaseNotes>Initial version</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/StefH/LongGuid</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/StefH/LongGuid/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/LongGuid/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StefH/LongGuid</RepositoryUrl>
     <RootNamespace>System.LongGuid</RootNamespace>

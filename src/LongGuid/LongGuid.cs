@@ -59,7 +59,7 @@ namespace System.LongGuid
         /// </summary>
         /// <param name="byteArray">The byte array.</param>
         [PublicAPI]
-        public LongGuid(byte[] byteArray)
+        public LongGuid([NotNull] byte[] byteArray)
         {
             Check.HasNoNulls(byteArray, nameof(byteArray));
             Check.Condition(byteArray, IsValidLength, nameof(byteArray));
@@ -75,7 +75,7 @@ namespace System.LongGuid
         /// </summary>
         /// <param name="input">The <see cref="LongGuid"/> string to convert.</param>
         [PublicAPI]
-        public LongGuid(string input)
+        public LongGuid([NotNull] string input)
         {
             Check.NotNullOrEmpty(input, nameof(input));
             Check.Condition(input, IsValidLength, nameof(input));
@@ -113,7 +113,7 @@ namespace System.LongGuid
         /// <param name="input">The <see cref="LongGuid"/> string to convert.</param>
         /// <returns>A structure that contains the value that was parsed.</returns>
         [PublicAPI]
-        public static LongGuid Parse(string input)
+        public static LongGuid Parse([NotNull] string input)
         {
             Check.NotNullOrEmpty(input, nameof(input));
             Check.Condition(input, IsValidLength, nameof(input));
@@ -133,7 +133,7 @@ namespace System.LongGuid
         /// <param name="result">The structure that will contain the parsed value. If the method returns true, result contains a valid System.LongGuid. If the method returns false, result equals <see cref="LongGuid.Empty"/>.</param>
         /// <returns>true if the parse operation was successful; otherwise, false.</returns>
         [PublicAPI]
-        public static bool TryParse(string input, out LongGuid result)
+        public static bool TryParse([CanBeNull] string input, out LongGuid result)
         {
             result = Empty;
             if (string.IsNullOrEmpty(input) || !IsValidLength(input))
